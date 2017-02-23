@@ -1,0 +1,42 @@
+<div *ngIf="currentUser">
+<h2><img [src]="currentUser.user.avatar_url" /> Welcome, {{currentUser.user.login}}</h2>
+
+<div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3" style="margin-bottom:3rem;" *ngFor="let repo of currentUser.repos">
+        <div class="card bg-light-grey padding-1" style="height:23rem;">
+            <div class="card-block padding-1">
+                <h3 class="card-title">{{repo.name}}</h3>
+                <div class="card-text">
+                    {{repo.description || 'No Description'}} <br>
+                    Private: {{repo.private}}
+                </div>
+                <div style="margin-top:2rem;" class="text-center"><button type="button" class="btn btn-primary btn-md" (click)="showModal(repo)">Archive <i class="icon-file-archive-o"></i></button></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" bsModal #staticModal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center"><i class="icon-exclamation" style="font-size:5rem;"></i></h4>
+      </div>
+      <div class="modal-body" *ngIf="currentRepo">
+        Are you sure you want to archive the <b>{{currentRepo.name}}</b> repository?
+      </div>
+      <div class="text-center" style="margin-bottom:2rem;">
+      	<button type="button" class="btn btn-primary btn-md" aria-label="Archive" 
+      	(click)="archive$.next(currentRepo.name);staticModal.hide()">
+      	Archive
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
