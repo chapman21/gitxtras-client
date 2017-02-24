@@ -19,7 +19,7 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
-        "styles.less"
+        "styles.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -49,6 +49,11 @@
       "config": "./karma.conf.js"
     }
   },
+  "assets": [
+    "assets",
+    "favicon.ico",
+    "service-worker.js"
+  ],
   "defaults": {
     "styleExt": "css",
     "component": {}
