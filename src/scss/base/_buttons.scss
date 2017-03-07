@@ -1,0 +1,28 @@
+button, a{
+	font-family: 'Roboto', sans-serif;
+}
+
+.btn{
+	cursor:pointer;
+}
+
+.button-primary{
+	width: 100%;
+	background: linear-gradient(180deg, #88DC6D 0%, #60AF45 100%);
+	border: 1px solid #5CA741;
+	border-radius: 8px;
+}
+
+
+.button-link{
+	width:100%;
+	padding:1rem;
+	font-size:1.75rem;
+	font-weight:300;
+	&.active{
+			border: 1px solid #eeeeee;
+			background: #ffffff;
+			color:$brand-secondary !important;
+			border-radius:10px;
+	}
+}

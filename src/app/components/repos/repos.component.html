@@ -1,36 +1,68 @@
-<div *ngIf="currentUser">
-<h2><img [src]="currentUser.user.avatar_url" /> Welcome, {{currentUser.user.login}}</h2>
-
-<div *ngFor="let alert of alerts">
-  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
-</div>
 
 <div class="row">
-    <div class="col-sm-6 col-md-4 col-lg-3" style="margin-bottom:3rem;" *ngFor="let repo of currentUser.repos">
-        <div class="card bg-light-grey padding-1" style="height:50rem;">
-            <div class="card-block padding-1">
-                <h3 class="card-title">{{repo.name}}</h3>
-                <div class="card-text">
-                    {{repo.description || 'No Description'}} <br>
-                    Private: {{repo.private}}
-                    <p>ID: {{repo.id}}</p>
-                    <p>Created At: {{repo.created_at}}</p>
+ <ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="button-link nav-link active" href="#">Personal</a>
+  </li>
+  <li class="nav-item">
+    <a class="button-link nav-link disabled" href="#">Organizations</a>
+  </li>
+  </ul>
+  <span class="nav-item float-right" *ngIf="currentUser">
+    <img [src]="currentUser.user.avatar_url" />
+  </span>
+</div>
 
+
+
+<div class="row">
+ <ul class="nav secondary justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Popular</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Most Recent</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">A-Z</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Archived</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Private</a>
+  </li>
+</ul>
+</div>
+
+
+<div *ngIf="currentUser" style="margin-top:1rem;">
+<div class="row">
+    <div class="col-sm-6 col-md-4" style="margin-bottom:3rem;" *ngFor="let repo of currentUser.repos">
+        <div class="card">
+            <div class="card-block">
+             <h4 class="brand-secondary">{{repo.name}}</h4>
+             <p class="language brand-callout">{{repo.language || 'N/A'}}</p>
+                <div class="card-text brand-primary">
+                    <p class="description">{{repo.description || 'No Description'}} </p>
+                    <p class="brand-success padding-top-1"><b *ngIf="repo.private">Private</b>
+                    <b *ngIf="!repo.private">Public</b></p>
+                    <p><b>Created:</b> {{repo.created_at | date}}</p>
+                    <p><b>Last edited:</b> {{repo.updated_at | date}}</p>
                 </div>
-                <div style="margin-top:2rem;" class="text-center"><button type="button" class="btn btn-primary btn-md" (click)="showModal(repo)">Archive <i class="icon-file-archive-o"></i></button></div>
+                <div style="margin-top:2rem;" class="text-center">
+                <button type="button" class="btn btn-primary btn-lg" (click)="showModal(repo)"><i class="icon-DownloadArrow"></i> Archive</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
 
-<div class="modal fade" bsModal #staticModal="bs-modal"
-     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #staticModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title text-center"><i class="icon-exclamation" style="font-size:5rem;"></i></h4>
-      </div>
+        <h4 class="text-center"><i class="icon-exclamation" style="font-size:5rem;"></i></h4>
       <div class="modal-body" *ngIf="currentRepo">
         Are you sure you want to archive the <b>{{currentRepo.name}}</b> repository?
       </div>
@@ -43,3 +75,7 @@
     </div>
   </div>
 </div>
+
+
+
+

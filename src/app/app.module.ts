@@ -10,10 +10,12 @@ import { UserService } from './services/user.service';
 
 import { AlertModule, ModalModule } from 'ng2-bootstrap';
 
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ReposComponent } from './components/repos/repos.component';
+
 
 @NgModule({
   declarations: [

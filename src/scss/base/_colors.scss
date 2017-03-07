@@ -1,12 +1,22 @@
 $brand-primary: #756F71;
 $brand-secondary: #3B74C1;
+$brand-callout: orange;
+$brand-success: #7ed321;
 
 .brand-primary{
 	color: $brand-primary;
 }
 
-.brand-sondary{
+.brand-secondary{
 	color:$brand-secondary;
+}
+
+.brand-callout{
+	color:$brand-callout;
+}
+
+.brand-success{
+	color:$brand-success;
 }
 
 //background color classes
