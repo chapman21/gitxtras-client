@@ -1,0 +1,40 @@
+<div style="margin-top:1rem;">
+<div class="row">
+    <div class="col-sm-6 col-md-4" [ngClass]="{'offset-md-2': currentOrgs.length === 1}" style="margin-bottom:3rem;" *ngFor="let org of currentOrgs" (click)="goTo(org.login)">
+      <div class="card">
+        <div class="card-block text-center">
+        	<img [src]="org.avatar_url" />
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="currentUser" class="col-sm-6 col-md-4" style="margin-bottom:3rem;" (click)="goTo(currentUser.user.login)">
+        <div class="card">
+            <div class="card-block text-center">
+            	  <img [src]="currentUser.user.avatar_url" />
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" bsModal #staticModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <h4 class="text-center"><i class="icon-exclamation" style="font-size:5rem;"></i></h4>
+      <div class="modal-body" *ngIf="currentRepo">
+        Are you sure you want to archive the <b>{{currentRepo.name}}</b> repository?
+      </div>
+      <div class="text-center" style="margin-bottom:2rem;">
+      	<button type="button" class="btn btn-primary btn-md" aria-label="Archive" 
+      	(click)="archive$.next(currentRepo);staticModal.hide()">
+      	Archive
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

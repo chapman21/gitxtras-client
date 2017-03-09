@@ -11,7 +11,7 @@ export class UserService{
 
   constructor(private http: Http) { }
 
-  getUser(){
+  public getUser():any{
   	return this.http.get(`${environment.apiBaseUrl}/repos`, {})
   		.map((res:Response) => {
   			return res.json(); 

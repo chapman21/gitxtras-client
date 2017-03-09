@@ -1,5 +1,6 @@
 button, a{
 	font-family: 'Roboto', sans-serif;
+	cursor:pointer;
 }
 
 .btn{
@@ -11,6 +12,9 @@ button, a{
 	background: linear-gradient(180deg, #88DC6D 0%, #60AF45 100%);
 	border: 1px solid #5CA741;
 	border-radius: 8px;
+	&:active, &:hover{
+		background: linear-gradient(180deg, #88DC6D 0%, #60AF45 100%);
+	}
 }
 
 

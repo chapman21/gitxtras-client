@@ -1,47 +1,12 @@
-
-<div class="row">
- <ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="button-link nav-link active" href="#">Personal</a>
-  </li>
-  <li class="nav-item">
-    <a class="button-link nav-link disabled" href="#">Organizations</a>
-  </li>
-  </ul>
-  <span class="nav-item float-right" *ngIf="currentUser">
-    <img [src]="currentUser.user.avatar_url" />
-  </span>
-</div>
-
-
-
-<div class="row">
- <ul class="nav secondary justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Popular</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Most Recent</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">A-Z</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Archived</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Private</a>
-  </li>
-</ul>
-</div>
-
+<app-main-nav [currentUser]="user"></app-main-nav>
+<app-repo-filters></app-repo-filters>
 
 <div *ngIf="currentUser" style="margin-top:1rem;">
 <div class="row">
-    <div class="col-sm-6 col-md-4" style="margin-bottom:3rem;" *ngFor="let repo of currentUser.repos">
+    <div class="col-sm-6 col-md-4" style="margin-bottom:3rem;" *ngFor="let repo of currentUser | sort:sortingFilter">
         <div class="card">
             <div class="card-block">
-             <h4 class="brand-secondary">{{repo.name}}</h4>
+             <h4 class="brand-secondary card-info">{{repo.name}}</h4>
              <p class="language brand-callout">{{repo.language || 'N/A'}}</p>
                 <div class="card-text brand-primary">
                     <p class="description">{{repo.description || 'No Description'}} </p>
@@ -68,7 +33,7 @@
       </div>
       <div class="text-center" style="margin-bottom:2rem;">
       	<button type="button" class="btn btn-primary btn-md" aria-label="Archive" 
-      	(click)="archive$.next(currentRepo.name);staticModal.hide()">
+      	(click)="archive$.next(currentRepo);staticModal.hide()">
       	Archive
         </button>
       </div>

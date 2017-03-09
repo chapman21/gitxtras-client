@@ -6,7 +6,9 @@ import { HttpModule } from '@angular/http';
 import { Routing} from './app.routing';
 
 import { UserService } from './services/user.service';
+import { EmitterService } from './services/emitter.service';
 
+import { SortByPipe, SortByAccountType} from './filters/sortByPipe';
 
 import { AlertModule, ModalModule } from 'ng2-bootstrap';
 
@@ -15,6 +17,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ReposComponent } from './components/repos/repos.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { RepoFiltersComponent } from './components/repo-filters/repo-filters.component';
+import { OrganizationsComponent } from './components/organizations/organizations.component';
 
 
 @NgModule({
@@ -22,7 +27,12 @@ import { ReposComponent } from './components/repos/repos.component';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    ReposComponent
+    ReposComponent,
+    SortByPipe,
+    SortByAccountType,
+    MainNavComponent,
+    RepoFiltersComponent,
+    OrganizationsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +42,7 @@ import { ReposComponent } from './components/repos/repos.component';
     AlertModule.forRoot(),
     ModalModule.forRoot()
   ],
-  providers: [UserService],
+  providers: [UserService, EmitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
